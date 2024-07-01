@@ -1,14 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React from 'react'
 
-const Home = () => {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
-};
+import { HomeStackNavigation } from '../navigations/StackNavigation'
 
-export default Home;
+function Home(): JSX.Element {
+  return <HomeStackNavigation />
+}
 
-const styles = StyleSheet.create({});
+export default Home
