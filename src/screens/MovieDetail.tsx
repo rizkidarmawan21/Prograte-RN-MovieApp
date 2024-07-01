@@ -68,25 +68,17 @@ const MovieDetail = (): JSX.Element => {
         check()
     }, [movie_id])
 
-    const checkIsFavorite = async (id: number) => {
+    const checkIsFavorite = async (id: number): Promise<boolean> => {
         try {
-          const initialData: string | null = await AsyncStorage.getItem(
-            "@FavoriteList"
-          );
-          const parsedData: Movie[] = JSON.parse(initialData as string);
-    
-          if (initialData !== null) {
-            const checkFavorite = parsedData.find((movie) => movie.id === id);
-            if (checkFavorite) {
-              setIsFavorite(true);
-            } else {
-              setIsFavorite(false);
-            }
-          }
+            const initialData: string | null =
+                await AsyncStorage.getItem('@FavoriteList')
+            const favorites: Movie[] = initialData ? JSON.parse(initialData) : []
+            return favorites.some((item) => item.id === id)
         } catch (error) {
-          console.error(error);
+            console.log(error)
+            return false
         }
-      };
+    }
 
     const removeFavorite = async (id: number): Promise<void> => {
         try {
