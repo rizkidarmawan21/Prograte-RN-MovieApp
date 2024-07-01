@@ -68,47 +68,70 @@ const MovieDetail = (): JSX.Element => {
         check()
     }, [movie_id])
 
-    const checkIsFavorite = async (id: number): Promise<boolean> => {
+    const checkIsFavorite = async (id: number) => {
         try {
-            const initialData: string | null =
-                await AsyncStorage.getItem('@FavoriteList')
-            const favorites: Movie[] = initialData ? JSON.parse(initialData) : []
-            return favorites.some((item) => item.id === id)
+          const initialData: string | null = await AsyncStorage.getItem(
+            "@FavoriteList"
+          );
+          const parsedData: Movie[] = JSON.parse(initialData as string);
+    
+          if (initialData !== null) {
+            const checkFavorite = parsedData.find((movie) => movie.id === id);
+            if (checkFavorite) {
+              setIsFavorite(true);
+            } else {
+              setIsFavorite(false);
+            }
+          }
         } catch (error) {
-            console.log(error)
-            return false
+          console.error(error);
         }
-    }
+      };
 
     const removeFavorite = async (id: number): Promise<void> => {
         try {
-            const initialData: string | null =
-                await AsyncStorage.getItem('@FavoriteList')
-            const favorites: Movie[] = initialData ? JSON.parse(initialData) : []
-            const updatedFavorites = favorites.filter((item) => item.id !== id)
-            await AsyncStorage.setItem(
-                '@FavoriteList',
-                JSON.stringify(updatedFavorites),
-            )
-            setIsFavorite(false)
+          const initialData: string | null = await AsyncStorage.getItem(
+            "@FavoriteList"
+          );
+          const parsedDataLocalStorage: Movie[] = JSON.parse(initialData as string);
+          console.log("initialdata, id", parsedDataLocalStorage, id);
+          // 1. filter data by id
+          const removedData = parsedDataLocalStorage.filter(
+            (movie) => movie.id !== id
+          );
+          console.log("removedData", removedData);
+    
+          // 2. set localStoragenya
+          await AsyncStorage.setItem("@FavoriteList", JSON.stringify(removedData));
+    
+          // 3. jangan lupa setFavorite jadi false
+          setIsFavorite(false);
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    }
+      };
 
     const addFavorite = async (movie: Movie): Promise<void> => {
         try {
-            const initialData: string | null =
-                await AsyncStorage.getItem('@FavoriteList')
-            const favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
-            favMovieList.push(movie)
-            await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
-            setIsFavorite(true)
+          const initialData: string | null = await AsyncStorage.getItem(
+            "@FavoriteList"
+          );
+          console.log(initialData);
+    
+          let favMovieList: Movie[] = [];
+    
+          if (initialData !== null) {
+            favMovieList = [...JSON.parse(initialData), movie];
+          } else {
+            favMovieList = [movie];
+          }
+    
+          await AsyncStorage.setItem("@FavoriteList", JSON.stringify(favMovieList));
+          setIsFavorite(true);
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    }
-
+      };
     const renderComponent = (): JSX.Element => {
         switch (screen) {
             case ScreenState.Success:
