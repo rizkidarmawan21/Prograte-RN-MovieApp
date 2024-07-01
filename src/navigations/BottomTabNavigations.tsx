@@ -8,7 +8,16 @@ import Favorite from "../screens/Favorite";
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = (): JSX.Element => (
-  <Tab.Navigator>
+  <Tab.Navigator screenOptions={{
+    tabBarStyle: {
+      backgroundColor: '#e1daed',
+      position: 'absolute',
+      marginBottom: 10,
+      marginHorizontal: 20,
+      borderRadius: 50,
+    },
+    tabBarShowLabel: false,
+  }}>
     <Tab.Screen
       name="Home"
       component={Home}
