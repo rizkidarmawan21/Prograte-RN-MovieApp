@@ -23,8 +23,8 @@ function FavoriteScreen(): JSX.Element {
       const data = await getAllData()
       setFavoriteList(data)
     }
-    check()
-  }, [])
+    check().catch((err) => console.error(err))
+  })
 
   return (
     <View style={styles.container}>
