@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import MovieDetail from '../screens/MovieDetail'
 import HomeScreen from '../screens/HomeScreen'
+import FavoriteScreen from '../screens/FavoriteScreen'
 // import HomeScreen from '../screens/(home)/Index'
 // import DetailScreen from '../screens/(home)/Detail'
 
@@ -22,18 +23,19 @@ function HomeStackNavigation(): JSX.Element {
         </Stack.Navigator>
     )
 }
-// function FavoriteStackNavigation(): JSX.Element {
-//     return (
-//         <Stack.Navigator initialRouteName="FavoriteScreen">
-//             <Stack.Screen
-//                 name="FavoriteScreen"
-//                 component={FavoriteScreen}
-//                 options={{ headerShown: false }}
-//             />
-//             <Stack.Screen name="Detail" component={DetailScreen} />
-//         </Stack.Navigator>
-//     )
-// }
+
+function FavoriteStackNavigation(): JSX.Element {
+    return (
+        <Stack.Navigator initialRouteName="FavoriteScreen">
+            <Stack.Screen
+                name="FavoriteScreen"
+                component={FavoriteScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Detail" component={MovieDetail} />
+        </Stack.Navigator>
+    )
+}
 // function SearchStackNavigation(): JSX.Element {
 //     return (
 //         <Stack.Navigator initialRouteName="SearchScreen">
@@ -49,4 +51,4 @@ function HomeStackNavigation(): JSX.Element {
 // }
 
 
-export { HomeStackNavigation }
+export { HomeStackNavigation, FavoriteStackNavigation }
