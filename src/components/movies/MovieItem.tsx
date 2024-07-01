@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Alert,
 } from 'react-native'
 
 import { FontAwesome } from '@expo/vector-icons'

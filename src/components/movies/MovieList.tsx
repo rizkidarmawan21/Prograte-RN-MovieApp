@@ -82,14 +82,14 @@ const styles = StyleSheet.create({
   },
   purpleLabel: {
     width: 20,
-    height: 40,
+    height: 20,
     borderRadius: 20,
     backgroundColor: '#8978A4',
     marginRight: 12,
   },
   title: {
-    fontSize: 20,
-    fontWeight: '900',
+    fontSize: 18,
+    fontWeight: '600',
   },
   movieList: {
     paddingLeft: 4,

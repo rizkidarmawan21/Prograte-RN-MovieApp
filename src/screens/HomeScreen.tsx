@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StatusBar, StyleSheet, View } from 'react-native'
+import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import MovieList from '../components/movies/MovieList'
 import type { MovieListProps } from '../../types/app'
 
@@ -28,6 +28,48 @@ const movieLists: MovieListProps[] = [
 function HomeScreen(): JSX.Element {
     return (
         <ScrollView>
+            <View style={{
+                backgroundColor: '#bcb0d1',
+                height: 120,
+                borderBottomEndRadius: 20,
+                borderBottomStartRadius: 20,
+                paddingHorizontal: 20,
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    marginTop: 25,
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}>
+                    <View >
+                        <Text style={{
+                            fontSize: 20,
+                            color: 'black',
+                            fontWeight: '600',
+                        }}>
+                            Hello, John Doe
+                        </Text>
+                        <Text style={{
+                            marginTop: 5,
+                            fontSize: 16,
+                            color: 'black',
+                            fontWeight: '400',
+                        }}>
+                            Welcome to the movie app
+                        </Text>
+                    </View>
+
+                    {/* Profile Image in Right */}
+                    <Image
+                        source={{ uri: 'https://cardealer.potenzaglobalsolutions.com/wp-content/uploads/2017/01/01-5-430x450.jpg' }}
+                        style={{
+                            width: 50,
+                            height: 50,
+                            borderRadius: 25,
+                        }}
+                    />
+                </View>
+            </View>
             <View style={styles.container}>
                 {movieLists.map((movieList) => (
                     <MovieList
@@ -45,6 +87,7 @@ function HomeScreen(): JSX.Element {
 const styles = StyleSheet.create({
     container: {
         marginTop: StatusBar.currentHeight ?? 32,
+        marginLeft: 10,
         alignItems: 'center',
         justifyContent: 'center',
         rowGap: 16,
