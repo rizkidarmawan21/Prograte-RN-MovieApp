@@ -1,0 +1,26 @@
+{
+    "build": {
+        "preview": {
+            "android": {
+                "buildType": "apk",
+                "env": {
+                    "API_URL": "https://api.themoviedb.org/3/",
+                    "API_KEY": "788a23b1758f0e65f3918b01e7157c91",
+                    "API_ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODhhMjNiMTc1OGYwZTY1ZjM5MThiMDFlNzE1N2M5MSIsIm5iZiI6MTcxOTc2MTU2OS4zMDMzNTksInN1YiI6IjY2ODE3OTc4YjU3MjM1ZWQ2ZWZmMThhYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kwTTvvlTdqAkTGNd-EApYJYGa58zZcap0GYhB6xmDgA"
+                }
+            }
+        },
+        "preview2": {
+            "android": {
+                "gradleCommand": ":app:assembleRelease"
+            }
+        },
+        "preview3": {
+            "developmentClient": true
+        },
+        "preview4": {
+            "distribution": "internal"
+        },
+        "production": {}
+    }
+}
